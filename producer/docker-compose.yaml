@@ -1,0 +1,17 @@
+services:
+  go:
+    container_name: go_producer
+    build:
+      context: ./
+    volumes:
+      - ./:/app
+      - .env:/app/.env
+    ports:
+      - ${APP_PORT_IN_CONTAINER}:${APP_PORT_PUBLISH}
+    networks:
+      - infrastructure
+
+networks:
+  infrastructure:
+    driver: bridge
+    external: true
